@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Favour Obieze - Advanced Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-glass: rgba(30, 41, 59, 0.8);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: rgba(148, 163, 184, 0.2);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.3);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a202c 100%);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary-color), transparent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--secondary-color), transparent);
+            top: 60%;
+            right: 10%;
+            animation-delay: -7s;
+        }
+
+        .orb-3 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--accent-color), transparent);
+            bottom: 20%;
+            left: 30%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(15px) rotate(240deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            box-shadow: var(--shadow-glow);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: var(--shadow-glow); }
+            50% { box-shadow: 0 0 50px rgba(99, 102, 241, 0.5); }
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: slideInDown 1s ease-out;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin: 4rem 0;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin: 6rem 0;
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .project-button:hover::before {
+            left: 100%;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 4rem 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 4rem 0;
+            animation: fadeInUp 1s ease-out 1.5s both;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 1rem 2rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .header-stats {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .stat-item {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modern scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(var(--secondary-color), var(--accent-color));
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="profile-avatar">PF</div>
+            <h1>Prince Favour Obieze</h1>
+            <p>Full-Stack Developer & Data Analyst</p>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-number">12+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8+</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="skills-section scroll-reveal">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">JavaScript</div>
+                <div class="skill-tag">React</div>
+                <div class="skill-tag">Node.js</div>
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">Data Analysis</div>
+                <div class="skill-tag">HTML/CSS</div>
+                <div class="skill-tag">API Integration</div>
+                <div class="skill-tag">UI/UX Design</div>
+                <div class="skill-tag">TypeScript</div>
+                <div class="skill-tag">MongoDB</div>
+                <div class="skill-tag">PostgreSQL</div>
+                <div class="skill-tag">Machine Learning</div>
+            </div>
+        </div>
+
+        <!-- Web Applications Section -->
+        <div class="projects-section scroll-reveal">
+            <h2 class="section-title">🌐 Web Applications</h2>
+            <p class="section-subtitle">Full-featured web applications with modern functionality</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3><span class="project-icon">✅</span>Task Manager</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Drag & Drop</span>
+                        <span class="project-tag">CRUD</span>
+                        <span class="project-tag">Real-time</span>
+                    </div>
+                    <p>A comprehensive task management application with drag-and-drop functionality, priority settings, progress tracking, collaborative features, and real-time synchronization.</p>
+                    <a class="project-button" href="https://v0-new-project-h9vo7w9girk.vercel.app/" target="_blank" rel="noopener">
+                        <span>View Project</span>
+                        <span>→</span>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3><span class="project-icon">📱</span>Social Media Analytics</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Analytics</span>
+                        <span class="project-tag">API</span>
+                        <span class="project-tag">Charts</span>
+                        <span class="project-tag">Dashboard</span>
+                    </div>
+                    <p>Comprehensive social media analytics tool with engagement metrics, trend analysis, reporting features, multi-platform integration, and automated insights generation.</p>
+                    <a class="project-button" href="https://v0-new-project-sdf89eygtlo.vercel.app/" target="_blank" rel="noopener">
+                        <span>View Project</span>
+                        <span>→</span>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3><span class="project-icon">📝</span>Note Taking App</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Markdown</span>
+                        <span class="project-tag">Search</span>
+                        <span class="project-tag">Cloud Sync</span>
+                        <span class="project-tag">Collaboration</span>
+                    </div>
+                    <p>Feature-rich note-taking application with markdown support, tags, advanced search functionality, cloud synchronization capabilities, and collaborative editing features.</p>
+                    <a class="project-button" href="https://v0-new-project-cwyoiuq85nf.vercel.app/" target="_blank" rel="noopener">
+                        <span>View Project</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Creative & Fun Section -->
+        <div class="projects-section scroll-reveal">
+            <h2 class="section-title">🎮 Creative & Interactive</h2>
+            <p class="section-subtitle">Entertainment and creative applications showcasing interactive experiences</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3><span class="project-icon">🎮</span>Space Shooter Game</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Canvas</span>
+                        <span class="project-tag">Animation</span>
+                        <span class="project-tag">Physics</span>
+                    </div>
+                    <p>Engaging browser-based space shooter game with multiple levels, progressive difficulty, scoring system, responsive controls, smooth animations, and particle effects.</p>
+                    <a class="project-button" href="https://nighttime07.github.io/space-shooter/" target="_blank" rel="noopener">
+                        <span>Play Game</span>
+                        <span>🚀</span>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3><span class="project-icon">🖼️</span>Image Processing Tool</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Canvas API</span>
+                        <span class="project-tag">Filters</span>
+                        <span class="project-tag">Processing</span>
+                        <span class="project-tag">AI Enhanced</span>
+                    </div>
+                    <p>Advanced image editing tool with custom filters, effects, cropping, batch processing capabilities, real-time preview functionality, and AI-powered enhancement features.</p>
+                    <a class="project-button" href="https://nighttime07.github.io/image-pro/" target="_blank" rel="noopener">
+                        <span>Try Tool</span>
+                        <span>✨</span>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3><span class="project-icon">🎵</span>Music Visualizer</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Web Audio API</span>
+                        <span class="project-tag">Canvas</span>
+                        <span class="project-tag">Real-time</span>
+                        <span class="project-tag">Interactive</span>
+                    </div>
+                    <p>Interactive music visualizer with real-time audio analysis, customizable visual effects, multiple visualization modes, and responsive design for immersive audio experiences.</p>
+                    <a class="project-button" href="#" onclick="showComingSoon()" style="cursor: pointer;">
+                        <span>Coming Soon</span>
+                        <span>🎶</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Contact Section -->
+        <div class="contact-section scroll-reveal">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Ready to collaborate on your next project?</p>
+            <div class="contact-buttons">
+                <a href="mailto:princefavour.dev@gmail.com" class="contact-btn">
+                    <span>📧</span>
+                    <span>Email Me</span>
+                </a>
+                <a href="https://linkedin.com/in/prince-favour-obieze" class="contact-btn" target="_blank" rel="noopener">
+                    <span>💼</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/nighttime07" class="contact-btn" target="_blank" rel="noopener">
+                    <span>🐙</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="tel:+2348123456789" class="contact-btn">
+                    <span>📱</span>
+                    <span>Call Me</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const revealTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (revealTop < windowHeight - revealPoint) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced hover effects for project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) rotateX(5deg) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for floating orbs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const orbs = document.querySelectorAll('.floating-orb');
+            
+            orbs.forEach((orb, index) => {
+                const speed = 0.5 + (index * 0.2);
+                orb.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Dynamic stats counter animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + '+';
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + '+';
+                    }
+                }, 30);
+            });
+        }
+
+        // Trigger stats animation when header is visible
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    headerObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        headerObserver.observe(document.querySelector('.header'));
+
+        // Coming soon modal
+        function showComingSoon() {
+            alert('🚧 This project is currently under development. Stay tuned for the launch! 🚀');
+        }
+
+        // Enhanced skill tag animations
+        document.querySelectorAll('.skill-tag').forEach((tag, index) => {
+            tag.style.animationDelay = `${index * 0.1}s`;
+            tag.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 0.6s ease-in-out';
+                }, 10);
+            });
+        });
+
+        // Dynamic theme based on time
+        function updateThemeBasedOnTime() {
+            const hour = new Date().getHours();
+            const root = document.documentElement;
+            
+            if (hour >= 6 && hour < 18) {
+                // Day theme adjustments
+                root.style.setProperty('--bg-dark', '#1e293b');
+                root.style.setProperty('--bg-card', '#334155');
+            } else {
+                // Night theme (default)
+                root.style.setProperty('--bg-dark', '#0f172a');
+                root.style.setProperty('--bg-card', '#1e293b');
+            }
+        }
+
+        updateThemeBasedOnTime();
+
+        // Initial reveal for elements already in view
+        document.addEventListener('DOMContentLoaded', () => {
+            revealOnScroll();
+        });
+
+        // Add typing effect to the main title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            element.style.borderRight = '2px solid var(--primary-color)';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    setTimeout(() => {
+                        element.style.borderRight = 'none';
+                    }, 1000);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect on load
+        window.addEventListener('load', () => {
+            const title = document.querySelector('.header h1');
+            const originalText = title.textContent;
+            typeWriter(title, originalText, 80);
+        });
+    </script>
+</body>
+</html>
